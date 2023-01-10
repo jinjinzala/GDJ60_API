@@ -13,6 +13,12 @@ public class Ex1Main {
 		// 6. 프로그램 종료
 		
 		
+	System.out.println("학생이름을 입력해주세요");
+	if( ) {
+		
+	}
+		
+		
 		
 		
 		
