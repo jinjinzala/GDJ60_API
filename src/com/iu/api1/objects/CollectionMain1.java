@@ -1,6 +1,7 @@
 package src.com.iu.api1.objects;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CollectionMain1 {
 
@@ -15,8 +16,11 @@ public class CollectionMain1 {
 		ars.add(ar2);
 		
 		ars.get(0).get(0);
-
-		
+        
+		HashMap<String, ArrayList<Integer>> map = new HashMap<>();
+	    
+		map.put("ar1", ar1);
+		map.put("ar2", ar2);
 		
 	}
 
