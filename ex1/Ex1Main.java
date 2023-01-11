@@ -16,27 +16,7 @@ public class Ex1Main {
 		// 6. 프로그램 종료
 		
 		new StudentController().start();
-		
-		StudentDAO dao = new StudentDAO();
-		ArrayList<StudentDTO> ar = dao.init();
-		StudentDTO studentDTO = dao.findByName(ar);
-		System.out.println(studentDTO.getName());
-		System.out.println(studentDTO.getAvg());
-		
-	   for(int i=0; i<ar.size();i++) {
-			System.out.println(ar.get(i).getName());
-      
-	   int[] nums = new int[3];		
-	   for(int n:nums) {
-		  
-	   }
-			
-		}
-		
 	
-		
-		
-		
 		
 		
 	}

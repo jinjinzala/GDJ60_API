@@ -12,7 +12,9 @@ public class StudentDTO {
 	private int total;
 	private double avg;
 	
-	
+//학생정보백업
+//현재시간을 파일명으로 해서 파일 작성
+// 학생정보삭제 
 	public String getName() {
 		return name;
 	}

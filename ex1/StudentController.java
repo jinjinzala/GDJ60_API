@@ -1,5 +1,6 @@
 package ex1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentController {
@@ -8,6 +9,7 @@ public class StudentController {
 	private StudentDAO studentDAO;
 	private StudentView studentView;
 	private ArrayList<StudentDTO> ar;
+	
 	
 	
 	
@@ -21,7 +23,7 @@ public class StudentController {
 	public void start() {
 		boolean check = true;
 		
-		while (check) {
+		while(check) {
 
 			System.out.println("1. 학생정보초기화");
 			System.out.println("2. 학생정보전체조회");
@@ -29,7 +31,7 @@ public class StudentController {
 			System.out.println("4. 학생정보추가");
 			System.out.println("4. 프로그램 종료");
 			System.out.println("5. 학생정보삭제");
-			
+			System.out.println("7. 학생정보저장");
 			int select = sc.nextInt();
 			
 			switch(select) {
@@ -38,7 +40,8 @@ public class StudentController {
 				break;
 			case 2 :
 				studentView.view(ar);	
-			 break;
+				break;
+			
 			case 3 :
 				studentDTO studentDTO = studentDAO.findByName(ar);
 				if(studentDTO != null){
