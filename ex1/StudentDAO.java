@@ -1,11 +1,18 @@
 package ex1;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class StudentDAO {
 
+ArrayList<StudentDTO> ar = new ArrayList<>();
  private StringBuffer sb;
  private Scanner sc;
  
@@ -19,8 +26,52 @@ public class StudentDAO {
 		sb.append("choa, 4, 71, 25, 99 ");
         }
 	
+        //학생정보백업
+        //현재시간을 파일명으로 해서 파일 작성
+        public void studentBackUp(ArrayList<StudentDTO> ar) {
+        Calendar ca = Calendar.getInstance();
+        long time = ca.getTimeInMillis();
+        
+        	
+        	File file = new File ("c:\\fileTest, student.txt");
+        	FileWriter fw = null;
+        	
+        	try {
+        		fw = new FileWriter(file);
+        	    
+        		for(StudentDTO studentDTO : ar) {        			
+        			StringBuffer sb = new StringBuffer();
+        			sb.append(studentDTO.getName());
+        			sb.append("-");
+        			sb.append(studentDTO.getKor());
+        			sb.append("-");
+        			sb.append(studentDTO.getEng());
+        			sb.append("-");
+        			sb.append(studentDTO.getMath());
+        			sb.append("-");
+        			sb.append(studentDTO.getNum());
+        			sb.append("-");
+        			sb.append("\r\n");
+        			
+        			fw.write(sb.toString());
+        			fw.flush();
+        			
+        		}
+        	}catch(IOException e) {
+        		e.printStackTrace();
+        	}finally {
+        		try {
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        }
+        
+        
 		// 학생 정보 삭제
-		public int removeStudent(ArrayList<StudentDTO>ar) {
+		public int removeStudent(ArrayList<StudentDTO> ar) {
 		int result = 0;
 		
 		
@@ -76,13 +127,57 @@ public class StudentDAO {
 		//학생정보초기화
 		public ArrayList<StudentDTO>  init() {
 			String data = this.sb.toString();
-			data=data.replace(" ", "-");
-			data=data.replace(",", "");
+			
+			
+			String [] names = file.list();
+		    long max =0;	
+		
+			for(String name:names) {
+				
+				name = name.substring(0,name.lastIndexOf("."));
+				long date = Long.parseLong(name);
+				
+				if(date>max) {
+					max = date;
+					
+				}
+			}
+			
+			//1. 파일정보 file
+			File file = new File ("c:\\fileTest","student.txt");
+			file = new File(file,max+".txt");
+			//2. 파일 내용을 읽기 위해서 연결 준비
+			FileReader fr = null;
+			BufferedReader br = null;
+			
+			
+			try {
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			String data = null;
+			while((data=br.readLine())!= null) {
+				data=data.replace(" ", "-");
+				data=data.replace(",", "");
+			  
+			}
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+				br.close();
+				fr.close();
+			     catch(Exception e ) {
+			    	 }
+			     }
+				}
+			
+			
+			
 			
 			System.out.println(data);
 			StringTokenizer st = new StringTokenizer(data, "-");
-			ArrayList<StudentDTO> ar = new ArrayList<>();
-			while(st.hasMoreTokens()) {
+			
 				StudentDTO studentDTO = new StudentDTO();
 				studentDTO.setName(st.nextToken());
 				studentDTO.setNum(Integer.parseInt(st.nextToken()));
@@ -92,7 +187,7 @@ public class StudentDAO {
 				studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath() );
 				studentDTO.setAvg(studentDTO.getTotal()/3.0);
 				ar.add(studentDTO);
-			}
+			
 			
 			return ar;
 		}

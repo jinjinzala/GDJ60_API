@@ -58,9 +58,15 @@ public class StudentController {
 				select = studentDAO.removeStudent(ar);
 				if(select==1) {
  					studentView.view("삭제");
-				}else {
+				}
+				else {
 					studentView.view("삭제실패");
 				}
+				
+			case 6 :
+				studentDAO.studentBackUp(null);
+				
+				
 			default :
 				
 				
