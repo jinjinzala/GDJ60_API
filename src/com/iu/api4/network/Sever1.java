@@ -15,10 +15,10 @@ import javax.naming.ldap.SortKey;
 
 public class Sever1 {
     public static void main(String[] args) {
-    	Scanner scanner = new Scanner(System.in);
-    	   ServerSocket ss = null;
-    	      Socket sc = null;
-    	      InputStream is = null;
+		      Scanner scanner = new Scanner(System.in);
+		      ServerSocket ss = null;
+		      Socket sc = null;
+		      InputStream is = null;
     	      InputStreamReader ir = null;
     	      BufferedReader br = null;
     	      
@@ -30,7 +30,7 @@ public class Sever1 {
     	      try {
     	         //객체를 만들면 8282포트를 열어놓고
     	         //클라이언트가 접속할 때까지 기다림
-    	         ss = new ServerSocket(8284);
+    	         ss = new ServerSocket(8282);
     	         System.out.println("Client 접속을 기다리는 중");
     	      
     	         //클라이언트의 응답을 받아 연결 성공
